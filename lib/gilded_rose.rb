@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GildedRose
   def initialize(items)
     @items = items
@@ -21,15 +23,15 @@ class GildedRose
   private
 
   def update_normal(item)
-    item.quality = item.quality - 1 if item.quality > 0
-    item.quality = item.quality - 1 if item.sell_in < 0
+    item.quality = item.quality - 1 if item.quality.positive?
+    item.quality = item.quality - 1 if item.sell_in.negative?
     item.sell_in = item.sell_in - 1
   end
 
   def update_aged_brie(item)
     if item.quality < 50 && item.sell_in >= 0
       item.quality = item.quality + 1
-    elsif item.quality < 50 && item.sell_in < 0
+    elsif item.quality < 50 && item.sell_in.negative?
       item.quality = if item.quality == 49
                        item.quality + 1
                      else
@@ -43,12 +45,8 @@ class GildedRose
     item.quality = item.quality + 1 if item.quality < 50
     item.quality = item.quality + 1 if item.sell_in < 11 && item.quality < 50
     item.quality = item.quality + 1 if item.sell_in < 6 && item.quality < 50
-    if item.sell_in <= 0
-      item.quality = 0
-      item.sell_in = item.sell_in - 1
-    else
-      item.sell_in = item.sell_in - 1
-    end
+    item.quality = 0 if item.sell_in <= 0
+    item.sell_in = item.sell_in - 1
   end
 end
 
