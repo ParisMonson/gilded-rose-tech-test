@@ -10,3 +10,5 @@ gem 'simplecov', require: false, group: :test
 gem "rspec", "~> 3.11"
 
 gem "rubocop", "~> 1.35"
+
+gem "rubocop-rspec", "~> 2.12"
