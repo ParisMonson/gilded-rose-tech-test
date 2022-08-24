@@ -4,6 +4,9 @@ source "https://rubygems.org"
 
 # gem "rails"
 
-gem "simplecov", "~> 0.21.2"
+gem 'simplecov', require: false, group: :test
 
-gem "robocop", "~> 0.1.1"
+
+gem "rspec", "~> 3.11"
+
+gem "rubocop", "~> 1.35"
