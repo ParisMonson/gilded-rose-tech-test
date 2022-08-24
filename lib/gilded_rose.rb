@@ -21,6 +21,7 @@ class GildedRose
       end
     end
   end
+  
   private
 
   def update_normal(item)
